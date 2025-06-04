@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield - Защита от киберугроз</title>
+    <style>
+        /* Общие стили */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        /* Шапка сайта */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--secondary-color);
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 2rem;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        /* Герой-секция */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Секция "О киберугрозах" */
+        .about-threats {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+         ction-title p {
+            color: #7f8c8d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .threats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .threat-card {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .threat-card:hover {
+            transform: translateY(-10px);
+        }
+        .threat-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .threat-content {
+            padding: 1.5rem;
+        }
+        .threat-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        /* Секция статистики */
+        .stats {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4rem 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Секция защиты */
+        .protection {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .protection-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+        
+        .step-number {
+            background-color: var(--secondary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+        
+        /* Футер */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Cyber<span>Shield</span></a>
+                <nav>
+                    <ul>
+                        <li><a href="#threats">Угрозы</a></li>
+                        <li><a href="#protection">Защита</a></li>
+                        <li><a href="#stats">Статистика</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Защита от современных киберугроз</h1>
+                <p>Узнайте о самых опасных киберугрозах и способах защиты от них в 2025 году</p>
+                <a href="#threats" class="btn">Узнать больше</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция "О киберугрозах" -->
+    <section id="threats" class="about-threats">
+        <div class="container">
+            <div class="section-title">
+                <h2>Современные киберугрозы</h2>
+                <p>В цифровую эпоху киберпреступность становится все более изощренной. Вот основные угрозы, о которых вы должны знать.</p>
+            </div>
+            <div class="threats-grid">
+                <div class="threat-card">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Фишинг">
+                    <div class="threat-content">
+                        <h3>Фишинг</h3>
+                        <p>Мошеннические письма и сайты, имитирующие легитимные организации, для кражи личных данных.</p>
+                    </div>
+                </div>
+                <div class="threat-card">
+                    <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Вредоносное ПО">
+                    <div class="threat-content">
+                        <h3>Вредоносное ПО</h3>
+                        <p>Вирусы, трояны, шпионские программы и другие типы вредоносного программного обеспечения.</p>
+                    </div>
+                </div>
+                <div class="threat-card">
+                    <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Ransomware">
+                    <div class="threat-content">
+                        <h3>Ransomware</h3>
+                        <p>Шифрование данных с последующим требованием выкупа за их расшифровку.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция статистики -->
+    <section id="stats" class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>+350%</h3>
+                    <p>Рост кибератак за последние 5 лет</p>
+                </div>
+                <div class="stat-item">
+                    <h3>4.35млн</h3>
+                    <p>Долларов средний ущерб от утечки данных</p>
+                </div>
+                <div class="stat-item">
+                    <h3>93%</h3>
+                    <p>Организаций сталкивались с фишингом</p>
+                </div>
+                <div class="stat-item">
+                    <h3>37сек</h3>
+                    <p>Каждые 37 секунд происходит хакерская атака</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция защиты -->
+    <section id="protection" class="protection">
+        <div class="container">
+            <div class="section-title">
+                <h2>Как защитить себя</h2>
+                <p>Следуйте этим простым рекомендациям, чтобы значительно повысить свою кибербезопасность</p>
+            </div>
+            <div class="protection-steps">
+                <div>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h3>Используйте надежные пароли</h3>
+                            <p>Создавайте сложные пароли и используйте менеджер паролей. Никогда не используйте один пароль для нескольких аккаунтов.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h3>Включите двухфакторную аутентификацию</h3>
+                            <p>Добавьте дополнительный уровень безопасности ко всем важным аккаунтам.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h3>Регулярно обновляйте ПО</h3>
+                            <p>Устанавливайте обновления безопасности для операционной системы и всех программ.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <h3>Будьте осторожны с письмами</h3>
+                            <p>Не переходите по подозрительным ссылкам и не открывайте вложения от неизвестных отправителей.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div>
+                            <h3>Используйте VPN</h3>
+                            <p>Особенно при подключении к публичным Wi-Fi сетям.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div>
+                            <h3>Регулярно делайте резервные копии</h3>
+                            <p>Храните важные данные в нескольких местах, включая офлайн-хранилища.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>CyberShield</h3>
+                    <p>Мы помогаем организациям и частным лицам защитить свои цифровые активы от современных киберугроз.</p>
+                </div>
+                <div class="footer-column">
+                   
+                </div>
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li>Email: info@cybershield.com</li>
+                        <li>Телефон: +7 (123) 456-78-90</li>
+                        <li>Адрес: Вологда, ул. Кибербезопасности, 123</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 CyberShield. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+
+
